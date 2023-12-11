@@ -51,7 +51,13 @@ func getTasks(res http.ResponseWriter, req *http.Request) {
 
 	res.Header().Set("Content-Type", "application/json")
 	res.WriteHeader(http.StatusOK)
-	res.Write(resp)
+	n, err := res.Write(resp)
+
+	if err != nil {
+		fmt.Printf("Ошибка: %s", err)
+	}
+
+	fmt.Printf("В ответ на запрос отправлено %d байт", n)
 }
 
 func addTask(res http.ResponseWriter, req *http.Request) {
@@ -96,7 +102,13 @@ func getTask(res http.ResponseWriter, req *http.Request) {
 
 	res.Header().Set("Content-Type", "application/json")
 	res.WriteHeader(http.StatusOK)
-	res.Write(resp)
+	n, err := res.Write(resp)
+
+	if err != nil {
+		fmt.Printf("Ошибка: %s", err)
+	}
+
+	fmt.Printf("В ответ на запрос отправлено %d байт", n)
 }
 
 func deleteTask(res http.ResponseWriter, req *http.Request) {
